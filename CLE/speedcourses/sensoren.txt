@@ -1,0 +1,23 @@
+Bewegings
+Temperatuur
+Geluid
+Licht
+
+Beweging/accelerometer
+Event on move
+
+Temperatuur
+Event on temperatuur hot/cold at 00
+
+Sound
+Set loud sound treshhold 0-1023
+
+Licht
+Set dark/light light treshhold to 1023/255
+On light dark/light
+
+On shake
+
+
+
+
