@@ -1,0 +1,80 @@
+// Lucas van der Vegt
+// v2
+// Vak CMGT Programmeren 1
+// Huiswerk Opdracht 2
+
+// Constants
+const winColor = 0x00FF00
+const loseColor = 0xFF0000
+const ballColor = 0xFFFFFF
+const winSound = music.baDing
+const loseSound = music.wawawawaa
+const winPosA = 2
+const winPosB = 7
+const loseAnimationSpeed = 1000
+
+// Variables
+let ledPos = -1
+let ledSpeed = 800
+let speedWinIncrease = 0.3
+let level = 0
+
+
+// Button A
+input.buttonA.onEvent(ButtonEvent.Click, function () {
+    if (ledPos == winPosA) {
+        light.clear
+        light.setAll(winColor)
+        ledSpeed *= speedWinIncrease
+        winSound.play()
+        level++
+    } else 
+    if (ledPos > 2, < 4) {
+        
+        
+    } else {
+        light.setAll(loseColor)
+        loseSound.play()
+        pause(loseAnimationSpeed)
+        ledPos = -1
+        light.clear()
+        ledSpeed *= 1.3
+    }
+})
+
+// Button B
+input.buttonB.onEvent(ButtonEvent.Click, function () {
+    if (ledPos == winPosB) {
+        light.clear
+        light.setAll(winColor)
+        ledSpeed *= speedWinIncrease
+        winSound.play()
+        level++
+    } else {
+        light.setAll(loseColor)
+        loseSound.play()
+        pause(loseAnimationSpeed)
+        ledPos = -1
+        light.clear()
+        ledSpeed *= 1.3
+    }
+})
+
+// Forever Loop
+forever(function () {
+    // Out of bound check
+    if (ledPos > 9) {
+        ledPos = -1
+    }
+
+    light.clear()
+    light.setPixelColor(ledPos, ballColor)
+    pause(ledSpeed)
+    ledPos++
+    ledSpeed *= 1.01
+
+    console.log(ledSpeed)
+}) 
+
+// license do not copy
+// EOF
