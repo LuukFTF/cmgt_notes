@@ -13,6 +13,7 @@ const loseSound = music.wawawawaa;
 const winPosA = 2;
 const winPosB = 7;
 const animationSpeed = 1000;
+const winAmount = 18;
 
 // Variables
 let ledPos = -1;
@@ -22,6 +23,8 @@ let speedHalfWinIncrease = 0.8;
 let loseDecrease = 1;
 let loseDecreaseIncrease = 1.05;
 let level = 0;
+let ledSpeedIncrease = 1;
+let ledSpeedIncreaseIncrease = 1.0001;
 
 // Button A
 input.buttonA.onEvent(ButtonEvent.Click, function () {
@@ -92,7 +95,7 @@ forever(function () {
         ledPos = -1;
     }
     // Win Event
-    while (ledSpeed < 12) {
+    while (ledSpeed < winAmount) {
         light.showAnimation(light.rainbowAnimation, 1000);
     }
     // Light ball animation
@@ -100,10 +103,12 @@ forever(function () {
     light.setPixelColor(ledPos, ballColor);
     pause(ledSpeed);
     ledPos++;
-    ledSpeed *= 1.01;
+    ledSpeed *= ledSpeedIncrease;
+    ledSpeedIncrease *= ledSpeedIncreaseIncrease;
     // Console log
-    console.log(loseDecrease);
     console.log(ledSpeed);
+    console.log(loseDecrease);
+    console.log(ledSpeedIncrease);
 })
 
 // license do not copy
