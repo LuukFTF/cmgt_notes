@@ -1,62 +1,87 @@
 // Lucas van der Vegt
-// v2
+// v3
 // Vak CMGT Programmeren 1
 // Huiswerk Opdracht 2
 
 // Constants
-const winColor = 0x00FF00
-const loseColor = 0xFF0000
-const ballColor = 0xFFFFFF
-const winSound = music.baDing
-const loseSound = music.wawawawaa
-const winPosA = 2
-const winPosB = 7
-const loseAnimationSpeed = 1000
+const winColor = 0x00FF00;
+const halfWinColor = 0xFFFF00;
+const loseColor = 0xFF0000;
+const ballColor = 0xFFFFFF;
+const winSound = music.baDing;
+const loseSound = music.wawawawaa;
+const winPosA = 2;
+const winPosB = 7;
+const animationSpeed = 1000;
 
 // Variables
-let ledPos = -1
-let ledSpeed = 800
-let speedWinIncrease = 0.3
-let level = 0
-
+let ledPos = -1;
+let ledSpeed = 1600;
+let speedWinIncrease = 0.6;
+let speedHalfWinIncrease = 0.8;
+let loseDecrease = 1;
+let loseDecreaseIncrease = 1.05;
+let level = 0;
 
 // Button A
 input.buttonA.onEvent(ButtonEvent.Click, function () {
     if (ledPos == winPosA) {
-        light.clear
-        light.setAll(winColor)
-        ledSpeed *= speedWinIncrease
-        winSound.play()
-        level++
-    } else
-        if (ledPos > 2 && ledPos > 4) {
+        light.clear;
+        light.setAll(winColor);
+        winSound.play();
+        ledSpeed *= speedWinIncrease;
+        ledSpeed -= 12;
+        level++;
 
+    } else {
+        if (ledPos < 4 && ledPos > 0) {
+            light.clear;
+            light.setAll(halfWinColor);
+            winSound.play();
+            ledSpeed *= speedHalfWinIncrease;
+            ledSpeed -= 5;
+            level++;
 
         } else {
-            light.setAll(loseColor)
-            loseSound.play()
-            pause(loseAnimationSpeed)
-            ledPos = -1
-            light.clear()
-            ledSpeed *= 1.3
+            light.clear();
+            light.setAll(loseColor);
+            loseSound.play();
+            ledPos = -1;
+            ledSpeed *= loseDecrease;
+            loseDecrease *= loseDecreaseIncrease;
+
         }
+    }
 })
 
 // Button B
 input.buttonB.onEvent(ButtonEvent.Click, function () {
     if (ledPos == winPosB) {
-        light.clear
-        light.setAll(winColor)
-        ledSpeed *= speedWinIncrease
-        winSound.play()
-        level++
+        light.clear;
+        light.setAll(winColor);
+        winSound.play();
+        ledSpeed *= speedWinIncrease;
+        ledSpeed -= 12;
+        level++;
+
     } else {
-        light.setAll(loseColor)
-        loseSound.play()
-        pause(loseAnimationSpeed)
-        ledPos = -1
-        light.clear()
-        ledSpeed *= 1.3
+        if (ledPos < 9 && ledPos > 5) {
+            light.clear;
+            light.setAll(halfWinColor);
+            winSound.play();
+            ledSpeed *= speedHalfWinIncrease;
+            ledSpeed -= 5;
+            level++;
+
+        } else {
+            light.clear();
+            light.setAll(loseColor);
+            loseSound.play();
+            ledPos = -1;
+            ledSpeed *= loseDecrease;
+            loseDecrease *= loseDecreaseIncrease;
+
+        }
     }
 })
 
@@ -64,16 +89,21 @@ input.buttonB.onEvent(ButtonEvent.Click, function () {
 forever(function () {
     // Out of bound check
     if (ledPos > 9) {
-        ledPos = -1
+        ledPos = -1;
     }
-
+    // Win Event
+    while (ledSpeed < 12) {
+        light.showAnimation(light.rainbowAnimation, 1000);
+    }
+    // Light ball animation
     light.clear()
-    light.setPixelColor(ledPos, ballColor)
-    pause(ledSpeed)
-    ledPos++
-    ledSpeed *= 1.01
-
-    console.log(ledSpeed)
+    light.setPixelColor(ledPos, ballColor);
+    pause(ledSpeed);
+    ledPos++;
+    ledSpeed *= 1.01;
+    // Console log
+    console.log(loseDecrease);
+    console.log(ledSpeed);
 })
 
 // license do not copy
