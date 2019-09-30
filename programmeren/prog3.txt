@@ -1,0 +1,22 @@
+e script
+
+
+
+
+y = Math.min(x, 10)
+
+Math.constrain(laag, 0, hoog)
+
+Math.map(waarde, 0, 1023, 0, 200)
+
+ranges vertalen
+
+
+
+
+
+loops
+
+for loop
+
+for 

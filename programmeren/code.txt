@@ -1,0 +1,40 @@
+let user = 'LuukFTF';
+let gameOver = false
+const PI = 3.14
+
+console.log(`${user} Joined the Game`);
+
+
+let aantalStud = 50
+let aantalDoc = 10
+let aantalStoel = aantalDoc + aantalStud
+
+console.log(`Er zijn ${aantalStoel} stoelen`)
+
+
+let aboPerMaand = 14
+let telefoonPerMaand = 15
+let kostenPerMaand = aboPerMaand * telefoonPerMaand
+
+console.log(`Ik betaal €${kostenPerMaand} per maand`)
+
+const MAANDENINJAAR = 12
+let kostenPerJaar = 420
+let kostenPerMaand_2 = kostenPerJaar/MAANDENINJAAR
+
+console.log(`Ik betaal maar €${kostenPerMaand_2} per maand`)
+
+let aantalPokemon = 141
+let gevangenPokemon = 12
+let percentageGevangen = gevangenPokemon/aantalPokemon*100
+
+console.log(`Ik heb ${kostenPerMaand_2}% van de Pokemon`)
+
+
+
+
+
+
+
+
+
