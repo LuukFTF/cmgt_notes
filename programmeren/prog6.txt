@@ -1,0 +1,5 @@
+function timesTen(n : number) {
+    return n * 10
+} 
+
+console.log(timesTen(4))
